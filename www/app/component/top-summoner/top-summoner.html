@@ -1,0 +1,35 @@
+<section class="top-summoner">
+    <table>
+       <caption>Challenger List</caption>
+        <tr>
+            <th>Rank</th>
+            <th>Invocador</th>
+            <th>League Points</th>
+            <th>Win Rate</th>
+            <th>Wins/Losses</th>
+        </tr>
+        <tr ng-repeat="challenger in $ctrl.challengerList | orderBy:'-leaguePoints'">
+            <td>{{$index+1}} 
+                
+                <img src="../assets/img/challenger_icon.png" alt="">
+                
+            </td>
+            <td>{{challenger.playerOrTeamName}}</td>
+            <td>{{challenger.leaguePoints}}</td>
+            <td>
+                <span ng-class="$ctrl.getColorWinRate(challenger.wins,challenger.losses)">
+                    {{$ctrl.calculateWinRate(challenger.wins,challenger.losses)}}%
+                </span>    
+            </td>
+            <td>
+                <span class="text-green">
+                    {{challenger.wins}}
+                </span> 
+                <span>/</span>
+                <span class="text-red">
+                    {{challenger.losses}}
+                </span>
+            </td>
+        </tr>
+    </table>
+</section>

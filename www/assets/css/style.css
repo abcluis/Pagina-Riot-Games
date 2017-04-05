@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+}
+.text-red{
+    color: #c0392b;
+}
+.text-green{
+    color: #27ae60;
+}
+.text-yellow{
+    color: #f39c12;
+}
+.prueba-imagen{
+    transition: 1s ease all;
+}
+
+.prueba-imagen:active{
+    position: absolute;
+    width: 100%;
+    background-color: rgba(0,0,0,0.5);
+    padding: 50px;
+}
+

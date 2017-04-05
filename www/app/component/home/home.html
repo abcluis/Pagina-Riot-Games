@@ -1,0 +1,21 @@
+<header class="header_home">
+    <div class="especial_div">
+        <div class="especial">
+            <h2 >Pagina de Pruebas de Rito</h2>
+            <p >Es una pagina acerca del videojuego creado por riot games</p>
+        </div>
+        <img src="../assets/img/header_logo.jpg" alt="">
+    </div>
+
+    
+</header>
+<!----------------------Section for champions------------------>
+<section class="home_champs">
+    <hr>
+    <div ng-repeat="champion in $ctrl.champions">
+       <h3>{{champion.name}}</h3>
+       <h4>{{champion.title}}</h4>
+       <img ng-src="{{$ctrl.rootImageUrl + champion.image.full}}" alt="Image Champ" ui-sref="navbar.champion-detail({id:champion.id})">
+    </div>
+      
+</section>

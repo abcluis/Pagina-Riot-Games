@@ -1,0 +1,16 @@
+<section class="champion-detail">
+    
+        <img ng-src="http://ddragon.leagueoflegends.com/cdn/img/champion/loading/{{$ctrl.champion.key}}_0.jpg" alt="">
+    
+    <div>
+        <h3>{{$ctrl.champion.name}}</h3>
+        <p ng-bind-html="$ctrl.champion.lore | trust"></p> 
+    </div>
+</section>
+<section class="champion-skins">
+    
+    <div ng-repeat="skin in $ctrl.skins">
+        <h3>{{skin.name}}</h3>
+        <img ng-src="http://ddragon.leagueoflegends.com/cdn/img/champion/loading/{{$ctrl.champion.key}}_{{skin.num}}.jpg" alt="skin">
+    </div>
+</section>

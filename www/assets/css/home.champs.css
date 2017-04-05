@@ -1,0 +1,23 @@
+.home_champs{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+.home_champs>h3{
+    
+}
+.home_champs div{
+    flex: 1;
+    padding: 5px;
+    margin: 12px 6px;
+    
+}
+.home_champs>div>img{
+    cursor: pointer;
+    border-radius: 20%;
+    transform: scale(.96);
+    transition: ease all .1s;
+}
+.home_champs>div>img:hover{
+    transform: scale(1);
+}

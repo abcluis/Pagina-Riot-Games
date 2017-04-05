@@ -1,0 +1,12 @@
+section.champion-skins{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+section.champion-skins>div{
+    margin: 4px 6px;
+    padding: 8px;
+}
+section.champion-skins>div img{
+    border-radius: 5%;
+}

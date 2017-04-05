@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pagina Angular Rito</title>
+    <link rel="stylesheet" href="assets/lib/font-awesome-4.7.0/css/font-awesome.min.css">
+    
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/navbar.css">
+    <link rel="stylesheet" href="assets/css/home.css">
+    <link rel="stylesheet" href="assets/css/home.champs.css">
+    <link rel="stylesheet" href="assets/css/champion-detail.css">
+    <link rel="stylesheet" href="assets/css/champion-detail.skins.css">
+    <link rel="stylesheet" href="assets/css/top-summoner.css">
+    
+    <!--------------------- Roboto Font---------------------->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    
+</head>
+<body ng-app="main">
+   
+    <div ui-view></div>
+    
+    
+    <!----------------Libraries Angular------------->
+    <script src="assets/lib/angular.min.js"></script>
+    <script src="assets/lib/angular-ui-router.min.js"></script>
+    
+    
+    <!-----------------Module Angular---------------->
+    <script src="app/app.js"></script>
+    
+    <!-----------------Constants Angular-------------->
+    <script src="app/constants.js"></script>
+    
+    <!-----------------Routes Angular----------------->
+    <script src="app/routes.js"></script>
+    
+    <!-----------------Controllers Angular----------->
+    <script src="app/component/home/homeController.js"></script>
+    <script src="app/component/champion-detail/championDetailController.js"></script>
+    <script src="app/component/top-summoner/topSummonerController.js"></script>
+    
+    <!------------------Services Angular ------------>
+    <script src="app/shared/champs/championsService.js"></script>
+    <script src="app/shared/summoners/summonerService.js"></script>
+    
+    <!------------------Filter Angular---------------->
+    <script src="app/shared/htmlFilter.js"></script>
+    
+    
+</body>
+</html>

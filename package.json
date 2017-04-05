@@ -1,0 +1,23 @@
+{
+  "name": "riot_page",
+  "version": "1.0.0",
+  "description": "Page riot",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "example",
+    "heroku"
+  ],
+  "author": "gleish && rolando",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "cors": "^2.8.3",
+    "express": "^4.15.2",
+    "method-override": "^2.3.8",
+    "path": "^0.12.7",
+    "request": "^2.81.0"
+  }
+}
