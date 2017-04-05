@@ -3,8 +3,12 @@
     flex-wrap: wrap;
     align-items: flex-end;
 }
-.home_champs>h3{
-    
+.home_champs h3{
+  
+    font-size: 1em;
+}
+.home_champs h4{
+    font-size: .7em;
 }
 .home_champs div{
     flex: 1;

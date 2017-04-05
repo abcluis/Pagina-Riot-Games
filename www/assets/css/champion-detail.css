@@ -1,14 +1,18 @@
 .champion-detail{
-    margin-top: 50px;
+	margin-top: 50px;
+	text-align: center
+    /*margin-top: 50px;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap;*/
 }
 .champion-detail>div{
-    flex: 1;
+    /*flex: 1;
     padding: 10px 12px;
-    min-width: 400px;
+    min-width: 400px;*/
 }
 .champion-detail>img{
-    object-fit: contain;
+	
+}
+.champion-detail>p{
 }
 

@@ -1,11 +1,13 @@
 <section class="champion-detail">
     
-        <img ng-src="http://ddragon.leagueoflegends.com/cdn/img/champion/loading/{{$ctrl.champion.key}}_0.jpg" alt="">
-    
-    <div>
         <h3>{{$ctrl.champion.name}}</h3>
+        <p>
+        	
+    	<img ng-src="http://ddragon.leagueoflegends.com/cdn/img/champion/loading/{{$ctrl.champion.key}}_0.jpg" alt="">
+    
         <p ng-bind-html="$ctrl.champion.lore | trust"></p> 
-    </div>
+        </p>
+   
 </section>
 <section class="champion-skins">
     

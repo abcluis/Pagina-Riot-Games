@@ -4,8 +4,8 @@
     angular.module('main')
     .service('SummonerService',SummonerService);
     
-    SummonerService.$inject = ['$http']
-    function SummonerService($http){
+    SummonerService.$inject = ['$http','base_url']
+    function SummonerService($http,base_url){
         var service = this;
         
         service.GetChallengerList = GetChallengerList;
@@ -22,7 +22,8 @@
         }
         
         function GetSummonerByName(name){
-            return $http.get('https://peaceful-spire-81262.herokuapp.com/data')
+
+            return $http.get(base_url+'/data/'+'luis')
                 .then(function(data){
                     return data.data;   
                 });
