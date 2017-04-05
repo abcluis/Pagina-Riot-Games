@@ -1,6 +1,8 @@
 section.champion-skins{
     display: flex;
     flex-wrap: wrap;
+    align-items: flex-end;
+
 }
 
 section.champion-skins>div{

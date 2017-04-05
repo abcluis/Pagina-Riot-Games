@@ -25,3 +25,10 @@
 .home_champs>div>img:hover{
     transform: scale(1);
 }
+
+@media (min-width: 1200px) {
+    .col-lg-15 {
+        width: 20%;
+        float: left;
+    }
+}
