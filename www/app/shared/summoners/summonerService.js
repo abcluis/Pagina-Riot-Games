@@ -22,7 +22,7 @@
         }
         
         function GetSummonerByName(name){
-            return $http.get('http://localhost:3000/data')
+            return $http.get('https://peaceful-spire-81262.herokuapp.com/data')
                 .then(function(data){
                     return data.data;   
                 });
