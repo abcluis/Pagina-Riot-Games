@@ -22,7 +22,7 @@
         }
         
         function GetSummonerByName(name){
-            return $http.get('https://localhost:3000/data')
+            return $http.get('http://localhost:3000/data')
                 .then(function(data){
                     return data.data;   
                 });
