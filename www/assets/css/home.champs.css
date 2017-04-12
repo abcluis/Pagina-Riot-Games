@@ -26,6 +26,7 @@
     transform: scale(1);
 }
 
+/*****************Testing**************************/
 @media (max-width: 768px) {
     .home_champs h3{
         color: red;

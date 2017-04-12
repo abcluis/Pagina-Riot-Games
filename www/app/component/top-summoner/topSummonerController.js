@@ -8,7 +8,7 @@
     function TopSummonerController(challengerList,SummonerService){
         
         
-        SummonerService.GetSummonerByName("abcluis").then(function(data){console.log(data)});
+        //SummonerService.GetSummonerByName("abcluis").then(function(data){console.log(data)});
         
         var $ctrl = this;
         $ctrl.challengerList = challengerList.entries;

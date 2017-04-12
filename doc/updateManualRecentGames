@@ -1,0 +1,26 @@
+app.post('/games/:id',function (req,res) {
+    var recentGames;
+    var id = req.params.id;
+
+
+    rp('https://lan.api.riotgames.com/api/lol/LAN/v1.3/game/by-summoner/'+id+'/recent?api_key=RGAPI-737702a9-d61e-4d5f-8cc4-daed40c6166b')
+        .then(function (data) {
+            data = JSON.parse(data);
+            recentGames = new RecentGames(data);
+            recentGames.save();
+        })
+        /*promise
+         .then(function () {
+         res.status(200).send({'Success':'Added recent games'});
+         })
+         .catch(function (error) {
+         console.error(error);
+         });*/
+
+        .then(function () {
+            res.status(200).send({'success':'Recent game added'})
+        })
+        .catch(function (error) {
+            res.status(400).send({'Error':'Cant save recent games '+ error});
+        })
+});
