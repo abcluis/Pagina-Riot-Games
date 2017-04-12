@@ -1,6 +1,7 @@
 if(process.env.MONGODB_URI){
     module.exports = Object.freeze({
-        ROOT_URL: 'https://peaceful-spire-81262.herokuapp.com/api'
+        ROOT_URL: 'http://localhost:'+process.env.PORT+'/api'
+        //ROOT_URL: 'https://peaceful-spire-81262.herokuapp.com/api'
     })
 }else {
     module.exports = Object.freeze({

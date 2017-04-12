@@ -73,7 +73,7 @@ function postChampionById(req,res) {
         .then(function (data) {
             data = JSON.parse(data);
             data.championId = id;
-            champion = new Champion(data);
+            var champion = new Champion(data);
             return champion.save();
         })
         .then(function () {
