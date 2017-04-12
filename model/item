@@ -1,0 +1,11 @@
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+
+var itemSchema = new Schema({
+    itemId : {type:Number , unique:true},
+    name : String,
+    description : String,
+    plaintext : String
+});
+
+module.exports = mongoose.model('Item',itemSchema);

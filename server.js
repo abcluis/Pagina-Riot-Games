@@ -9,8 +9,21 @@ mongoose.Promise = global.Promise;
 var methodOverride = require("method-override");
 var app = express();
 
+
+/*
+    Models
+ */
 var modelRecentGames = require('./model/recent-games');
+var modelSummoner = require('./model/summoner');
+var modelItem = require('./model/item');
+var modelChampion = require('./model/champion');
+/*
+    Routes
+ */
 var routesRecentGames = require('./routes/recent-games');
+var routesSummoner = require('./routes/summoner');
+var routesItem = require('./routes/item');
+var routesChampion = require('./routes/champion');
 
 var urlMongo =
     process.env.MONGODB_URI ||
@@ -41,7 +54,9 @@ app.get('/',function (req,res) {
 
 
 app.use('/api',routesRecentGames);
-
+app.use('/api',routesSummoner);
+app.use('/api',routesItem);
+app.use('/api',routesChampion);
 
 
 
