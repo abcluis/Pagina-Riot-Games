@@ -76,6 +76,7 @@ function postItemById(req,res) {
         .then(function (data) {
             data = JSON.parse(data);
             data.itemId = data.id;
+            console.log(data);
             var item = new Item(data);
             return item.save();
         })

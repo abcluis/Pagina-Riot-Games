@@ -65,7 +65,7 @@ function postSummonerByName(req,res) {
 
     var summoner;
     var name = req.params.name.toLowerCase().replace(' ','');
-    var url = 'https://lan.api.riotgames.com/api/lol/LAN/v1.4/summoner/by-name/'+name+'?api_key=RGAPI-737702a9-d61e-4d5f-8cc4-daed40c6166b'
+    var url = 'https://lan.api.riotgames.com/api/lol/LAN/v1.4/summoner/by-name/' + name + '?api_key=RGAPI-737702a9-d61e-4d5f-8cc4-daed40c6166b'
 
     rp(url)
         .then(function (data) {

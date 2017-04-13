@@ -5,15 +5,21 @@ var rp = require('request-promise');
 var app = express.Router();
 var RecentGames = mongoose.model('RecentGames');
 
+//var routesSummoner = require('../routes/summoner');
+
+var constants = require('../commons/constants/constants');
+
 app.route('/games')
     .get(getAllGames)
     .delete(deleteAllGames);
 
-app.route('/games/:id')
+app.route('/games/:id/id')
     .get(getGamesById)
     .post(postGamesById)
     .delete(deleteGamesById);
 
+app.route('/games/:name')
+    .get(getGamesByName);
 
 
 function getAllGames(req,res) {
@@ -45,8 +51,21 @@ function getGamesById(req,res) {
     var promise = RecentGames.find({"summonerId":id});
 
     promise
-        .then(function (games) {
-            res.status(200).send(games);
+        .then(function (game) {
+            if(game.length>0){
+                return game;
+            }else{
+                var options = {
+                    url : constants.ROOT_URL + '/games/' + id + '/id',
+                    method : 'POST',
+                    json : true
+                };
+
+                return rp(options);
+            }
+        })
+        .then(function (game) {
+            res.status(200).send(game);
         })
         .catch(function (error) {
             res.status(400).send({'Error':'Cant find games by name '+ error});
@@ -61,10 +80,13 @@ function postGamesById(req,res) {
         .then(function (data) {
             data = JSON.parse(data);
             recentGames = new RecentGames(data);
-            recentGames.save();
+            return recentGames.save();
         })
         .then(function () {
-            res.status(200).send({'success':'Recent game added'})
+            return RecentGames.find({"summonerId":id});
+        })
+        .then(function (game) {
+            res.status(200).send(game);
         })
         .catch(function (error) {
             res.status(400).send({'Error':'Cant save recent games '+ error});
@@ -83,6 +105,29 @@ function deleteGamesById(req,res) {
         .catch(function (error) {
             res.status(400).send({'Error':'Cant save recent games '+ error});
         })
+}
+
+function getGamesByName(req,res) {
+    var name = req.params.name.toLowerCase().replace(' ','');
+
+    var url = constants.ROOT_URL + '/summoner/' + name;
+
+    rp(url)
+        .then(function (data) {
+            data = JSON.parse(data);
+            var id = data[0].summonerId;
+            var options = {
+                url: constants.ROOT_URL + '/games/' + id + '/id',
+                json : true
+            };
+            return rp(options);
+        })
+        .then(function (game) {
+            res.status(200).send(game);
+        })
+        .catch(function (error) {
+            res.status(400).send({"Error":error});
+        });
 }
 
 module.exports = app;

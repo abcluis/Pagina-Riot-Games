@@ -17,6 +17,8 @@ var modelRecentGames = require('./model/recent-games');
 var modelSummoner = require('./model/summoner');
 var modelItem = require('./model/item');
 var modelChampion = require('./model/champion');
+var modelDivision = require('./model/division');
+var modelSummonerSpell = require('./model/summoner-spell');
 /*
     Routes
  */
@@ -24,6 +26,8 @@ var routesRecentGames = require('./routes/recent-games');
 var routesSummoner = require('./routes/summoner');
 var routesItem = require('./routes/item');
 var routesChampion = require('./routes/champion');
+var routesDivision = require('./routes/division');
+var routesSummonerSpell = require('./routes/summoner-spell');
 
 var urlMongo =
     process.env.MONGODB_URI ||
@@ -57,6 +61,8 @@ app.use('/api',routesRecentGames);
 app.use('/api',routesSummoner);
 app.use('/api',routesItem);
 app.use('/api',routesChampion);
+app.use('/api',routesDivision);
+app.use('/api',routesSummonerSpell);
 
 
 
