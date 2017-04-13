@@ -71,6 +71,7 @@ var gamesSchema = new Schema({
 
 var recentGamesSchema = new Schema({
 	summonerId : { type:Number, unique:true},
+	revisionDate : Date,
 	games : [gamesSchema]
 });
 

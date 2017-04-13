@@ -6,7 +6,8 @@ var spellSchema = new Schema({
     name : String,
     description : String,
     summonerLevel : Number,
-    key : String
+    key : String,
+    revisionDate : Date
 });
 
 module.exports = mongoose.model('SummonerSpell',spellSchema);

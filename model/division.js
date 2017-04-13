@@ -21,6 +21,7 @@ var oneDivision = new Schema({
 
 var divisionSchema = new Schema({
     summonerId : {type : Number, unique : true},
+    revisionDate : Date,
     divisions : [oneDivision]
 });
 

@@ -16,6 +16,7 @@ app.route('/games')
 app.route('/games/:id/id')
     .get(getGamesById)
     .post(postGamesById)
+    .put(putGamesById)
     .delete(deleteGamesById);
 
 app.route('/games/:name')
@@ -53,7 +54,20 @@ function getGamesById(req,res) {
     promise
         .then(function (game) {
             if(game.length>0){
-                return game;
+
+                var difference = (new Date() - game[0].revisionDate) / (1000*60);
+                if(difference>3){
+
+                    var options = {
+                        url : constants.ROOT_URL + '/games/' + id + '/id',
+                        method : 'PUT',
+                        json : true
+                    };
+
+                    return rp(options);
+                }else {
+                    return game;
+                }
             }else{
                 var options = {
                     url : constants.ROOT_URL + '/games/' + id + '/id',
@@ -79,6 +93,7 @@ function postGamesById(req,res) {
     rp('https://lan.api.riotgames.com/api/lol/LAN/v1.3/game/by-summoner/'+id+'/recent?api_key=RGAPI-737702a9-d61e-4d5f-8cc4-daed40c6166b')
         .then(function (data) {
             data = JSON.parse(data);
+            data.revisionDate = new Date();
             recentGames = new RecentGames(data);
             return recentGames.save();
         })
@@ -90,6 +105,30 @@ function postGamesById(req,res) {
         })
         .catch(function (error) {
             res.status(400).send({'Error':'Cant save recent games '+ error});
+        })
+}
+function putGamesById(req,res) {
+
+    var id = req.params.id;
+
+    var recentGamesUpdate;
+
+    var options = {
+        url : 'https://lan.api.riotgames.com/api/lol/LAN/v1.3/game/by-summoner/'+id+'/recent?api_key=RGAPI-737702a9-d61e-4d5f-8cc4-daed40c6166b',
+        method : 'GET',
+        json : true
+    };
+    rp(options)
+        .then(function (data) {
+            recentGamesUpdate = data;
+            recentGamesUpdate.revisionDate = new Date();
+            return RecentGames.update({"summonerId":id},recentGamesUpdate);
+        })
+        .then(function () {
+            res.status(200).send(recentGamesUpdate);
+        })
+        .catch(function (error) {
+            res.status(400).send(error);
         })
 }
 

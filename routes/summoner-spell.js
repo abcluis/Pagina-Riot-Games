@@ -16,6 +16,7 @@ app.route('/summoner-spell')
 
 app.route('/summoner-spell/:id')
     .get(getSummonerSpellById)
+    .put(putSummonerSpellById)
     .post(postSummonerSpellById);
 
 function getSummonerSpells(req,res) {
@@ -50,7 +51,19 @@ function getSummonerSpellById(req,res) {
     promise
         .then(function (summonerspell) {
             if(summonerspell.length>0){
-                return summonerspell;
+                var date = new Date();
+                // Diferencia en minutos
+                var difference = (date - summonerspell[0].revisionDate) / (1000*60);
+                if(difference>60){
+                    var options = {
+                        url : constants.ROOT_URL + '/summoner-spell/' + id,
+                        method : 'PUT',
+                        json : true
+                    };
+                    return rp(options);
+                }else {
+                    return summonerspell;
+                }
             }else{
                 var options = {
                     url : constants.ROOT_URL + '/summoner-spell/' + id,
@@ -64,17 +77,44 @@ function getSummonerSpellById(req,res) {
             res.status(200).send(summonerspell);
         })
         .catch(function (error) {
+            console.log(error);
             res.status(400).send(error);
         })
 
 }
+function putSummonerSpellById(req,res){
+    var id = req.params.id;
+    console.log("Entra al put");
+    var summonerSpellUpdate;
 
+    var options = {
+        url : 'https://global.api.riotgames.com/api/lol/static-data/LAN/v1.2/summoner-spell/'+id+'?api_key=RGAPI-737702a9-d61e-4d5f-8cc4-daed40c6166b',
+        method : 'GET',
+        json : true
+    };
+
+    rp(options)
+        .then(function (data) {
+            data.revisionDate = new Date();
+            summonerSpellUpdate = data;
+            return SummonerSpell.update({"id":id},summonerSpellUpdate);
+        })
+        .then(function () {
+            res.status(200).send(summonerSpellUpdate);
+        })
+        .catch(function (error) {
+            res.status(400).send(error);
+        });
+
+}
 function postSummonerSpellById(req,res) {
+    console.log("Entra al post");
     var id = req.params.id;
     var url = 'https://global.api.riotgames.com/api/lol/static-data/LAN/v1.2/summoner-spell/'+id+'?api_key=RGAPI-737702a9-d61e-4d5f-8cc4-daed40c6166b';
     rp(url)
         .then(function (data) {
             data = JSON.parse(data);
+            data.revisionDate = new Date();
             var summonerSpell = new SummonerSpell(data);
             return summonerSpell.save();
         })
