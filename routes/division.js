@@ -2,6 +2,8 @@ var express = require('express');
 var mongoose = require('mongoose');
 var rp = require('request-promise');
 
+var constants = require('../commons/constants/constants');
+
 var app = express.Router();
 var Division = mongoose.model('Division');
 
@@ -10,6 +12,7 @@ app.route('/division')
     .delete(deleteDivisions);
 
 app.route('/division/:id')
+    .get(getDivisionById)
     .post(postDivisionById);
 
 function getDivisions(req,res) {
@@ -36,6 +39,33 @@ function deleteDivisions(req,res) {
         })
 
 }
+
+function getDivisionById(req,res) {
+    var id = req.params.id;
+
+    var promise = Division.find({"summonerId":id});
+
+    promise
+        .then(function (division) {
+            if(division.length>0){
+                return division;
+            }else{
+                var options = {
+                    url : constants.ROOT_URL + '/division/' + id,
+                    method : 'POST',
+                    json : true
+                };
+                return rp(options);
+            }
+        })
+        .then(function (division) {
+            res.status(200).send(division);
+        })
+        .catch(function (error) {
+            res.status(400).send(error);
+        })
+}
+
 function postDivisionById(req,res) {
     var id = req.params.id;
 
