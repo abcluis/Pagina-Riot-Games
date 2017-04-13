@@ -1,34 +1,10 @@
-header{
-    margin-top: 50px;
-}
+
 header img{
     width: 100%;
 }
-.especial_div{
-    
-}
-.especial{
-    position:absolute;
-    top:50%;
-    z-index: 0;
-    left:50%; 
-    transform: translateX(-50%) translateY(-50%);
-    margin: 0;
-    text-align:center;
-}
-.especial>*{
+.jumbotron{
+    margin-top: 50px;
+    background: url("../img/header_logo.jpg") center;
+    background-size: cover;
     color: white;
-    margin: 10px 0px;
-    padding: 5px;
-    transition: .5s ease all;
-}
-.especial>*:hover{
-    color: slategray;
-    transform: scale(1.05);
-}
-.especial h2{
-    font-size: 36px;
-}
-.especial p {
-    font-size: 20px;
 }

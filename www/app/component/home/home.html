@@ -1,4 +1,4 @@
-<header class="header_home">
+<!--<header class="header_home">
     <div class="especial_div">
         <div class="especial">
             <h2 >Pagina de Pruebas de Rito</h2>
@@ -6,16 +6,39 @@
         </div>
         <img src="../assets/img/header_logo.jpg" alt="">
     </div>
+</header>-->
 
-    
-</header>
+<div class="jumbotron">
+    <div class="container">
+        <h1>Rito page</h1>
+        <p>Es una pagina acerca del videojuego creado por riot games.</p>
+        <p>
+            <a class="btn btn-primary btn-lg">Learn more</a>
+        </p>
+    </div>
+</div>
+
 <!----------------------Section for champions------------------>
-<section class="home_champs">
-    <hr>
-    <div ng-repeat="champion in $ctrl.champions">
+<div class="container">
+    <div class="row">
+        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3" ng-repeat="champion in $ctrl.champions">
+            <div class="thumbnail" >
+                <img ng-src="{{$ctrl.rootImageUrl + champion.image.full}}" alt="Image Champ" ui-sref="navbar.champion-detail({id:champion.id})">
+                <div class="caption">
+                    <h3>{{champion.name}}</h3>
+                    <p>
+                        {{champion.title}}
+                    </p>
+                    <p>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<div ng-repeat="champion in $ctrl.champions">
        <h3>{{champion.name}}</h3>
        <h4>{{champion.title}}</h4>
        <img ng-src="{{$ctrl.rootImageUrl + champion.image.full}}" alt="Image Champ" ui-sref="navbar.champion-detail({id:champion.id})">
-    </div>
-      
-</section>
+    </div>-->
+
+</div>
