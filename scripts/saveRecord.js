@@ -22,6 +22,6 @@ function saveRecord(id,Model,url){
             return model;
         })
         .catch(function (error) {
-            return error;
+            throw error;
         });
 }

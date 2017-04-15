@@ -8,14 +8,13 @@
         .module('main')
         .controller('SummonerController',SummonerController);
 
-    SummonerController.$inject = ['gamesDetail','items'];
-    function SummonerController(gamesDetail,items) {
+    SummonerController.$inject = ['gamesDetail','summoners','champions'];
+    function SummonerController(gamesDetail,summoners,champions) {
         var $ctrl = this;
-
-        console.log("Items", items);
         $ctrl.games = gamesDetail;
+        $ctrl.summoners = summoners;
+        $ctrl.champions = champions;
         console.log(gamesDetail);
-
     }
 
 

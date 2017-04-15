@@ -6,6 +6,10 @@ var mongoose = require('mongoose');
 var rp = require('request-promise');
 
 var constants = require('../commons/constants/constants');
+var formUrl = require('../scripts/formUrl');
+
+var saveRecord = require('../scripts/saveRecord');
+var findRecord = require('../scripts/findRecord');
 
 var app = express.Router();
 var SummonerSpell = mongoose.model('SummonerSpell');
@@ -46,33 +50,9 @@ function deleteSummonerSpells(req,res) {
 function getSummonerSpellById(req,res) {
     var id = req.params.id;
 
-    var promise = SummonerSpell.find({"id":id});
+    var promise = findAndSaveSummonerSpell(id);
 
     promise
-        .then(function (summonerspell) {
-            if(summonerspell.length>0){
-                var date = new Date();
-                // Diferencia en minutos
-                var difference = (date - summonerspell[0].revisionDate) / (1000*60);
-                if(difference>60){
-                    var options = {
-                        url : constants.ROOT_URL + '/summoner-spell/' + id,
-                        method : 'PUT',
-                        json : true
-                    };
-                    return rp(options);
-                }else {
-                    return summonerspell;
-                }
-            }else{
-                var options = {
-                    url : constants.ROOT_URL + '/summoner-spell/' + id,
-                    method : 'POST',
-                    json : true
-                };
-                return rp(options);
-            }
-        })
         .then(function (summonerspell) {
             res.status(200).send(summonerspell);
         })
@@ -82,6 +62,20 @@ function getSummonerSpellById(req,res) {
         })
 
 }
+
+function findAndSaveSummonerSpell(id) {
+    var promise = findRecord(id,'id',SummonerSpell);
+
+    return promise
+        .then(function (summonerspell) {
+            if(!summonerspell){
+                return saveRecord(id,SummonerSpell,formUrl(constants.URL_SUMMONER_SPELL_ID,'id',id));
+            }else{
+                return summonerspell;
+            }
+        })
+}
+
 function putSummonerSpellById(req,res){
     var id = req.params.id;
     console.log("Entra al put");

@@ -2,7 +2,9 @@
     background: url("../img/summoner-jumbotron.jpg") center;
 }
 
-.right-team{
-    float: right;
-    border:1px solid;
+.winner-team{
+    background-color: #286090;
+}
+.losser-team{
+    background-color: darkred;
 }

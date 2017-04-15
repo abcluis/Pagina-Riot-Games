@@ -6,10 +6,10 @@
 
     angular
         .module('main')
-        .service('ItemService',ItemService);
+        .service('SummonerSpellService',ItemService);
 
     ItemService.$inject = ['$resource','ServerInfo'];
     function ItemService($resource,ServerInfo) {
-        return $resource(ServerInfo.getBaseUrl() + '/api/item/:id',{id: "@id"});
+        return $resource(ServerInfo.getBaseUrl() + '/api/summoner-spell/:id',{id: "@id"});
     }
 })();

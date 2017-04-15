@@ -48,8 +48,55 @@
                                 return data;
                             });
                     }],
-                    items : ['gamesDetail','ItemService',function (gamesDetail,ItemService) {
-                        return ItemService.get({id:3010});
+                    summoners : ['gamesDetail','SummonerSpellService','$q',function (gamesDetail,SummonerSpellService,$q) {
+                        var promises = [];
+                        for(var i in gamesDetail){
+                            for(var j in gamesDetail[i].participants){
+                                var promise = SummonerSpellService.get({id:gamesDetail[i].participants[j].spell1Id});
+                                promises.push(promise);
+                                promise = SummonerSpellService.get({id:gamesDetail[i].participants[j].spell2Id});
+                                promises.push(promise);
+                            }
+                        }
+                        return $q.all(promises)
+                            .then(function (data) {
+                                var summoners = new Array(gamesDetail.length);
+                                var count = 0;
+                                for(var i in gamesDetail){
+                                    summoners[i] = new Array(gamesDetail[i].participants);
+                                    for(var j in gamesDetail[i].participants){
+                                        summoners[i][j] = {};
+                                        summoners[i][j].spell1 =  data[count];
+                                        count++;
+                                        summoners[i][j].spell2 =  data[count];
+                                        count++;
+                                    }
+                                }
+                                return summoners;
+                            });
+                    }],
+                    champions : ['gamesDetail','ChampionNameService','$q',function (gamesDetail,ChampionNameService,$q) {
+                        var promises = [];
+                        for(var i in gamesDetail){
+                            for(var j in gamesDetail[i].participants){
+                                var promise = ChampionNameService.get({id:gamesDetail[i].participants[j].championId});
+                                promises.push(promise);
+                            }
+                        }
+                        return $q.all(promises)
+                            .then(function (data) {
+                                var champions = new Array(gamesDetail.length);
+                                var count = 0;
+                                for(var i in gamesDetail){
+                                    champions[i] = new Array(gamesDetail[i].participants);
+                                    for(var j in gamesDetail[i].participants){
+                                        champions[i][j] = {};
+                                        champions[i][j].champion =  data[count];
+                                        count++;
+                                    }
+                                }
+                                return champions;
+                            });
                     }]
                 }
             })

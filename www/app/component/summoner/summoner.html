@@ -19,13 +19,35 @@
             <h3>Partida {{$index+1}}</h3>
             <div>
                 <div class="row"  ng-repeat="participant in game.participantIdentities | limitTo: game.participantIdentities.length/2">
-                    <div class="col-lg-6">
+                    <div class="col-lg-6" ng-class="{'winner-team': game.teams[0].winner , 'losser-team': !game.teams[0].winner}">
                         <p>{{participant.player.summonerName}}</p>
                         <img ng-src="https://ddragon.leagueoflegends.com/cdn/7.7.1/img/profileicon/{{participant.player.profileIcon}}.png" style="">
+                        <img ng-src="http://ddragon.leagueoflegends.com/cdn/7.7.1/img/spell/{{$ctrl.summoners[$parent.$index][$index].spell1.key}}.png" alt="">
+                        <img ng-src="http://ddragon.leagueoflegends.com/cdn/7.7.1/img/spell/{{$ctrl.summoners[$parent.$index][$index].spell2.key}}.png" alt="">
+                        <img ng-src="http://ddragon.leagueoflegends.com/cdn/7.5.1/img/champion/{{$ctrl.champions[$parent.$index][$index].champion.key}}.png" alt="">
+
+                        <img ng-src="http://ddragon.leagueoflegends.com/cdn/7.7.1/img/item/{{game.participants[$index].stats.item0}}.png" alt="">
+                        <img ng-src="http://ddragon.leagueoflegends.com/cdn/7.7.1/img/item/{{game.participants[$index].stats.item1}}.png" alt="">
+                        <img ng-src="http://ddragon.leagueoflegends.com/cdn/7.7.1/img/item/{{game.participants[$index].stats.item2}}.png" alt="">
+                        <img ng-src="http://ddragon.leagueoflegends.com/cdn/7.7.1/img/item/{{game.participants[$index].stats.item3}}.png" alt="">
+                        <img ng-src="http://ddragon.leagueoflegends.com/cdn/7.7.1/img/item/{{game.participants[$index].stats.item4}}.png" alt="">
+                        <img ng-src="http://ddragon.leagueoflegends.com/cdn/7.7.1/img/item/{{game.participants[$index].stats.item5}}.png" alt="">
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-6" ng-class="{'winner-team': game.teams[1].winner , 'losser-team': !game.teams[1].winner}">
                         <p>{{game.participantIdentities[$index+5].player.summonerName}}</p>
                         <img ng-src="https://ddragon.leagueoflegends.com/cdn/7.7.1/img/profileicon/{{game.participantIdentities[$index+5].player.profileIcon}}.png" style="">
+
+                        <img ng-src="http://ddragon.leagueoflegends.com/cdn/7.7.1/img/spell/{{$ctrl.summoners[$parent.$index][$index+5].spell1.key}}.png" alt="">
+                        <img ng-src="http://ddragon.leagueoflegends.com/cdn/7.7.1/img/spell/{{$ctrl.summoners[$parent.$index][$index+5].spell2.key}}.png" alt="">
+                        <img ng-src="http://ddragon.leagueoflegends.com/cdn/7.5.1/img/champion/{{$ctrl.champions[$parent.$index][$index+5].champion.key}}.png" alt="">
+
+                        <img ng-src="http://ddragon.leagueoflegends.com/cdn/7.7.1/img/item/{{game.participants[$index+5].stats.item0}}.png" alt="">
+                        <img ng-src="http://ddragon.leagueoflegends.com/cdn/7.7.1/img/item/{{game.participants[$index+5].stats.item1}}.png" alt="">
+                        <img ng-src="http://ddragon.leagueoflegends.com/cdn/7.7.1/img/item/{{game.participants[$index+5].stats.item2}}.png" alt="">
+                        <img ng-src="http://ddragon.leagueoflegends.com/cdn/7.7.1/img/item/{{game.participants[$index+5].stats.item3}}.png" alt="">
+                        <img ng-src="http://ddragon.leagueoflegends.com/cdn/7.7.1/img/item/{{game.participants[$index+5].stats.item4}}.png" alt="">
+                        <img ng-src="http://ddragon.leagueoflegends.com/cdn/7.7.1/img/item/{{game.participants[$index+5].stats.item5}}.png" alt="">
+
                     </div>
                 </div>
             </div>
@@ -37,8 +59,7 @@
                 <a ui-sref="navbar.summoner({name:participant.player.summonerName})"><p>{{participant.player.summonerName}}</p></a>
                 <img ng-src="https://ddragon.leagueoflegends.com/cdn/7.7.1/img/profileicon/{{participant.player.profileIcon}}.png" style="">
                 <p>Hechizos</p>
-                <img ng-src="http://ddragon.leagueoflegends.com/cdn/7.7.1/img/spell/SummonerHaste.png" alt="">
-                <img ng-src="http://ddragon.leagueoflegends.com/cdn/7.7.1/img/spell/SummonerFlash.png" alt="">
+
             </div>
         </div>
     </div>

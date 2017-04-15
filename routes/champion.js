@@ -42,11 +42,11 @@ function deleteChampions(req,res) {
 function getChampionById(req,res) {
     var id = req.params.id;
 
-    var promise = Champion.find({"championId":id});
+    var promise = Champion.findOne({"championId":id});
 
     promise
         .then(function (champion) {
-            if(champion.length>0){
+            if(champion){
                 return champion;
             }else {
                 var options = {
