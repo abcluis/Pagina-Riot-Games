@@ -7,7 +7,6 @@
 
     NavbarController.$inject = ['$scope'];
     function NavbarController($scope) {
-
         $scope.showSpinner = false;
 
         $scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {

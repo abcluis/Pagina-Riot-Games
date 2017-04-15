@@ -5,24 +5,23 @@ angular
     .module('main')
     .service('GameService',GameService);
 
-GameService.$inject = ['$http','base_url'];
-function GameService($http,base_url) {
+GameService.$inject = ['$http','ServerInfo'];
+function GameService($http,ServerInfo) {
     var service = this;
 
     service.getGameDetailById = getGameDetailById;
     service.getMatchListByName = getMatchListByName;
 
     function getGameDetailById(id) {
-        return $http.get(base_url + '/api/game-detail/' + id)
+        return $http.get(ServerInfo.getBaseUrl() + '/api/game-detail/' + id)
             .then(function (data) {
                 return data.data;
             });
     }
 
     function getMatchListByName(name) {
-        return $http.get(base_url + '/api/match-list/' + name + '/name')
+        return $http.get(ServerInfo.getBaseUrl() + '/api/match-list/' + name + '/name')
             .then(function (data) {
-
                 return data.data;
             });
     }

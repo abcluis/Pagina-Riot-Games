@@ -4,8 +4,8 @@
     angular.module('main')
     .service('SummonerService',SummonerService);
     
-    SummonerService.$inject = ['$http','base_url']
-    function SummonerService($http,base_url){
+    SummonerService.$inject = ['$http','ServerInfo']
+    function SummonerService($http,ServerInfo){
         var service = this;
         
         service.GetChallengerList = GetChallengerList;
@@ -23,14 +23,14 @@
         
         function GetSummonerByName(name){
 
-            return $http.get(base_url + '/api/summoner/' + name)
+            return $http.get(ServerInfo.getBaseUrl() + '/api/summoner/' + name)
                 .then(function(data){
                     return data.data;   
                 });
         }
         
         function GetRecentGames(name){
-            return $http.get(base_url + '/api/games/' + name)
+            return $http.get(ServerInfo.getBaseUrl() + '/api/games/' + name)
                 .then(function (data) {
                     return data.data;
                 });
