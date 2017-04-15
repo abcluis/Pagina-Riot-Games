@@ -6,12 +6,12 @@
 
     angular.module('main')
         .controller('TestController',TestController);
-    TestController.$inject = ['$scope','Upload'];
-    function TestController($scope,Upload){
+    TestController.$inject = ['$scope','Upload','ServerInfo'];
+    function TestController($scope,Upload,ServerInfo){
 
         $scope.submit = function () {
             Upload.upload({
-                url: 'http://localhost:3000/api/user/',
+                url: ServerInfo.getBaseUrl() + '/api/user/',
                 method: 'POST',
                 data: {
                     username: $scope.user
