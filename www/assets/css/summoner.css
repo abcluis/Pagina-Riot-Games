@@ -1,0 +1,8 @@
+.jumbotron-summoner{
+    background: url("../img/summoner-jumbotron.jpg") center;
+}
+
+.right-team{
+    float: right;
+    border:1px solid;
+}

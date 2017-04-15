@@ -49,13 +49,13 @@ function deleteAllGames(req,res) {
 
 function getGamesById(req,res) {
     var id = req.params.id;
-    var promise = RecentGames.find({"summonerId":id});
+    var promise = RecentGames.findOne({"summonerId":id});
 
     promise
         .then(function (game) {
-            if(game.length>0){
+            if(game){
 
-                var difference = (new Date() - game[0].revisionDate) / (1000*60);
+                var difference = (new Date() - game.revisionDate) / (1000*60);
                 if(difference>3){
 
                     var options = {

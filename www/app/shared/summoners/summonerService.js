@@ -23,26 +23,19 @@
         
         function GetSummonerByName(name){
 
-            return $http.get(base_url+'/data/'+'luis')
+            return $http.get(base_url + '/api/summoner/' + name)
                 .then(function(data){
                     return data.data;   
                 });
         }
         
         function GetRecentGames(name){
-            console.log(name);
-            return 
-            GetSummonerByName(name)
-            .then(function(data){
-                var id;
-                eval("id = data."+name+".id");
-                console.log(id);
-                return $http.get('https://lan.api.riotgames.com/api/lol/LAN/v1.3/game/by-summoner/'+id+'/recent?api_key=RGAPI-737702a9-d61e-4d5f-8cc4-daed40c6166b');
-            }).then(function(data){
-                console.log("Recent Games",data);
-                return data.data
-            });
+            return $http.get(base_url + '/api/games/' + name)
+                .then(function (data) {
+                    return data.data;
+                });
         }
+
     }
     
 })();

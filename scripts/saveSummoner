@@ -1,0 +1,25 @@
+var rp = require('request-promise');
+
+module.exports = saveSummoner;
+function saveSummoner(id,Model,url){
+    var model;
+
+    var options = {
+        url: url,
+        json : true
+    };
+
+    return rp(options)
+        .then(function (data) {
+            model = new Model(data[id]);
+            model.fixedName = data[id].name.toLowerCase().replace(' ','');
+            model.summonerId = data[id].id;
+            return model.save();
+        })
+        .then(function () {
+            return model;
+        })
+        .catch(function (error) {
+            return error;
+        });
+}

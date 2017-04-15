@@ -1,0 +1,48 @@
+<div class="jumbotron jumbotron-summoner" style="margin-top: 50px">
+    <div class="container">
+        <h1>Buscador de invocadores</h1>
+        <p>Busca el nombre de invocador que desees y observa sus ultimas partidas</p>
+        <form action="" class="form-inline" role="form">
+            <div class="form-group">
+                <label class="sr-only" for="">Invocador</label>
+                <input type="search" class="form-control" name="" id="" placeholder="Invocador ..." ng-model="$ctrl.summoner">
+            </div>
+            <a ui-sref="navbar.summoner({name:$ctrl.summoner})"><button type="submit" class="btn btn-primary" >Buscar</button></a>
+        </form>
+    </div>
+</div>
+<div>
+
+    <div>
+        <h3>Invocadores</h3>
+        <div ng-repeat="game in $ctrl.games">
+            <h3>Partida {{$index+1}}</h3>
+            <div>
+                <div class="row"  ng-repeat="participant in game.participantIdentities | limitTo: game.participantIdentities.length/2">
+                    <div class="col-lg-6">
+                        <p>{{participant.player.summonerName}}</p>
+                        <img ng-src="https://ddragon.leagueoflegends.com/cdn/7.7.1/img/profileicon/{{participant.player.profileIcon}}.png" style="">
+                    </div>
+                    <div class="col-lg-6">
+                        <p>{{game.participantIdentities[$index+5].player.summonerName}}</p>
+                        <img ng-src="https://ddragon.leagueoflegends.com/cdn/7.7.1/img/profileicon/{{game.participantIdentities[$index+5].player.profileIcon}}.png" style="">
+                    </div>
+                </div>
+            </div>
+
+
+<!--
+                <p ng-class="{'right-team': game.participants[$index].teamId === 200}">{{game.participants[$index].teamId}}</p>
+-->
+                <a ui-sref="navbar.summoner({name:participant.player.summonerName})"><p>{{participant.player.summonerName}}</p></a>
+                <img ng-src="https://ddragon.leagueoflegends.com/cdn/7.7.1/img/profileicon/{{participant.player.profileIcon}}.png" style="">
+                <p>Hechizos</p>
+                <img ng-src="http://ddragon.leagueoflegends.com/cdn/7.7.1/img/spell/SummonerHaste.png" alt="">
+                <img ng-src="http://ddragon.leagueoflegends.com/cdn/7.7.1/img/spell/SummonerFlash.png" alt="">
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

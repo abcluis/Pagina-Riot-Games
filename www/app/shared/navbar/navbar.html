@@ -23,8 +23,9 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Campeones</a></li>
-            <li><a href="#">Invocadores</a></li>
+            <li ui-sref-active="active"><a href="#" ui-sref="navbar.home">Campeones</a></li>
+            <li ui-sref-active="active"><a href="#" ui-sref="navbar.summoner({name:'abcluis'})">Invocadores</a></li>
+            <li ui-sref-active="active"><a href="#" ui-sref="navbar.top-summoner">Top list</a></li>
         </ul>
         <form class="navbar-form navbar-left" role="search">
             <div class="form-group">
@@ -47,4 +48,8 @@
     </div><!-- /.navbar-collapse -->
 </nav>
 
-<div ui-view></div>
+<div ng-show="showSpinner" style="margin-top: 50px; text-align: center">
+    <img src="../assets/img/loading.gif" alt="">
+</div>
+
+<div ui-view ng-show="!showSpinner"></div>

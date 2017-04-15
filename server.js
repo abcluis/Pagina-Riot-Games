@@ -31,6 +31,8 @@ var modelChampion = require('./model/champion');
 var modelDivision = require('./model/division');
 var modelSummonerSpell = require('./model/summoner-spell');
 var modelUser = require('./model/user');
+var modelGameDetail = require('./model/games-detail');
+var modelMatchList = require('./model/match-list');
 /*
     Routes
  */
@@ -41,6 +43,8 @@ var routesChampion = require('./routes/champion');
 var routesDivision = require('./routes/division');
 var routesSummonerSpell = require('./routes/summoner-spell');
 var routesUser = require('./routes/user');
+var routesGameDetail = require('./routes/games-detail');
+var routesMatchList = require('./routes/match-list');
 
 var urlMongo =
     process.env.MONGODB_URI ||
@@ -81,6 +85,8 @@ app.use('/api',routesChampion);
 app.use('/api',routesDivision);
 app.use('/api',routesSummonerSpell);
 app.use('/api',routesUser);
+app.use('/api',routesGameDetail);
+app.use('/api',routesMatchList);
 
 
 

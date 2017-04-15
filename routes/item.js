@@ -8,6 +8,11 @@ var constants = require('../commons/constants/constants');
 
 var Item = mongoose.model('Item');
 
+var saveRecord = require('../scripts/saveRecord');
+var findRecord = require('../scripts/findRecord');
+
+var url = 'https://global.api.riotgames.com/api/lol/static-data/LAN/v1.2/item/{{id}}?api_key=RGAPI-737702a9-d61e-4d5f-8cc4-daed40c6166b';
+
 app.route('/item')
     .get(getItem)
     .delete(deleteItem);
@@ -24,7 +29,7 @@ function getItem(req,res) {
             res.status(200).send(items);
         })
         .catch(function (error) {
-            res.status(error.statusCode).send(error);
+            res.status(error.statusCode || 400).send(error);
         });
 }
 
@@ -43,21 +48,15 @@ function deleteItem(req,res) {
 function getItemById(req,res) {
     var id = req.params.id;
 
-    var promise = Item.find({"itemId":id});
+    var promise = findRecord(id,'id',Item);
 
     promise
         .then(function (item) {
-            if(item.length>0){
+            if(item){
                 return item;
             }else {
-                var options = {
-                    url : constants.ROOT_URL + '/item/' + id,
-                    method : 'POST',
-                    json : true
-                };
-                return rp(options);
+               return saveRecord(id,Item,formUrl(url,id));
             }
-
         })
         .then(function (item) {
             res.status(200).send(item);
@@ -67,28 +66,25 @@ function getItemById(req,res) {
         })
 }
 
+
+
+
 function postItemById(req,res) {
 
     var id = req.params.id;
-    var url = 'https://global.api.riotgames.com/api/lol/static-data/LAN/v1.2/item/'+id+'?api_key=RGAPI-737702a9-d61e-4d5f-8cc4-daed40c6166b'
+    var promise = saveRecord(id,Item,formUrl(url,id));
 
-    rp(url)
-        .then(function (data) {
-            data = JSON.parse(data);
-            data.itemId = data.id;
-            console.log(data);
-            var item = new Item(data);
-            return item.save();
-        })
-        .then(function () {
-            return Item.find({"itemId":id});
-        })
+    promise
         .then(function (item) {
             res.status(200).send(item);
         })
         .catch(function (error) {
-            res.status(error.statusCode).send(error);
+            res.status(error).send(error);
         });
+}
+
+function formUrl(url,id) {
+    return url.replace('{{id}}',id);
 }
 
 module.exports = app;
