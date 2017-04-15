@@ -39,10 +39,10 @@
 </head>
 <body ng-app="main">
 
-<div ui-view ng-show></div>
+<div ui-view></div>
 
 
-    <div >
+    <div ng-show>
         <form ng-controller="TestController" name="form">
             Single Image with validations
             <input type="text" ng-model="user">
