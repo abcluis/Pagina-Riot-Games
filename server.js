@@ -9,7 +9,8 @@ var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 var methodOverride = require("method-override");
 var app = express();
-
+var multiparty = require('connect-multiparty'),
+multipartyMiddleware = multiparty();
 
 var cloudinary = require('cloudinary');
 
@@ -18,7 +19,6 @@ cloudinary.config({
     api_key: '865324478546245',
     api_secret: '1Cjx8yG6ikVbjAHwBopR5mY2zx8'
 });
-
 
 
 /*

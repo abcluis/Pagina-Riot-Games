@@ -39,7 +39,29 @@
 </head>
 <body ng-app="main">
 
-<div ui-view></div>
+<div ui-view ng-show></div>
+
+
+    <div >
+        <form ng-controller="TestController" name="form">
+            Single Image with validations
+            <input type="text" ng-model="user">
+            <input
+                    type="file"
+                    ngf-select
+                    ng-model="file"
+                    name="file"
+                    ngf-pattern="'image/*'"
+                    accept="image/*"
+                    ngf-max-size="20MB"
+                    class="form-control"
+            />
+            <img style="width:50%;" ng-show="!!file" ngf-thumbnail="file"/>
+            <button type="submit" ng-click="submit()">submit</button>
+        </form>
+    </div>
+
+
 
     <script src="assets/lib/jquery-3.1.1.min.js"></script>
     <script src="assets/lib/bootstrap.min.js"></script>
@@ -48,6 +70,8 @@
     <script src="assets/lib/angular.min.js"></script>
     <script src="assets/lib/angular-ui-router.min.js"></script>
     <script src="assets/lib/angular-resource.min.js"></script>
+    <script src="assets/lib/ng-file-upload-shim.min.js"></script>
+    <script src="assets/lib/ng-file-upload.min.js"></script>
 
     
     <!-----------------Module Angular---------------->
@@ -66,7 +90,8 @@
     <script src="app/component/home/homeController.js"></script>
     <script src="app/component/champion-detail/championDetailController.js"></script>
     <script src="app/component/top-summoner/topSummonerController.js"></script>
-    
+    <script src="app/test/testController.js"></script>
+
     <!------------------Services Angular ------------>
     <script src="app/shared/champs/championsService.js"></script>
     <script src="app/shared/summoners/summonerService.js"></script>

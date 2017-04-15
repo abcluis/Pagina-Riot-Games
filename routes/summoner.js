@@ -15,6 +15,7 @@ var saveSummoner = require('../scripts/saveSummoner');
 var findRecord = require('../scripts/findRecord');
 var findIdByName = require('../scripts/findIdByName');
 
+
 app.route('/summoner')
     .get(getSummoners)
     .delete(deleteSummoner);
@@ -58,6 +59,7 @@ function getSummonerByName(req,res) {
 }
 
 function postSummonerByName(req,res) {
+
 
     var summoner;
     var name = req.params.name.toLowerCase().replace(' ','');

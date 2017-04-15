@@ -7,9 +7,13 @@ var User = mongoose.model('User');
 
 var cloudinary = require('cloudinary');
 
+
+var multiparty = require('connect-multiparty');
+var multipartyMiddleware = multiparty();
+
 app.route('/user')
     .get(getUser)
-    .post(postUser);
+    .post(multipartyMiddleware,postUser);
 
 app.route('/user/:username')
     .get(getUserByUsername)
@@ -29,17 +33,19 @@ function getUser(req,res) {
 }
 
 function postUser(req,res){
+
+    var file = req.files.file;
     var user = req.body;
     var url = user.url;
-    var promise = cloudinary.uploader.upload(url);
+    var promise = cloudinary.uploader.upload(file.path);
 
     //https://res.cloudinary.com/gleish95/image/upload/w_300,h_300,c_fit/v1492098471/ma5m7emwzm9xp513cslc.jpg
 
     promise
         .then(function (result) {
+            console.log(result);
             var full = result.secure_url;
             var thumb = 'https://res.cloudinary.com/gleish95/image/upload/' + 'w_300,h_300,c_fill' + full.slice(full.search("/v"));
-
             user.image = {
                 full : full,
                 thumb : thumb
@@ -52,6 +58,7 @@ function postUser(req,res){
             res.status(200).send(user);
         })
         .catch(function (error) {
+            console.log(error);
             res.status(400).send(error);
         });
 
