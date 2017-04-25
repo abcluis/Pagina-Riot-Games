@@ -42,24 +42,6 @@
 <div ui-view></div>
 
 
-    <div ng-show>
-        <form ng-controller="TestController" name="form">
-            Single Image with validations
-            <input type="text" ng-model="user">
-            <input
-                    type="file"
-                    ngf-select
-                    ng-model="file"
-                    name="file"
-                    ngf-pattern="'image/*'"
-                    accept="image/*"
-                    ngf-max-size="20MB"
-                    class="form-control"
-            />
-            <img style="width:50%;" ng-show="!!file" ngf-thumbnail="file"/>
-            <button type="submit" ng-click="submit()">submit</button>
-        </form>
-    </div>
 
 
 
@@ -72,6 +54,8 @@
     <script src="assets/lib/angular-resource.min.js"></script>
     <script src="assets/lib/ng-file-upload-shim.min.js"></script>
     <script src="assets/lib/ng-file-upload.min.js"></script>
+    <script src="assets/lib/angular-animate.min.js"></script>
+    <script src="assets/lib/ui-bootstrap-tpls-2.5.0.min.js"></script>
 
     
     <!-----------------Module Angular---------------->
@@ -90,7 +74,12 @@
     <script src="app/component/home/homeController.js"></script>
     <script src="app/component/champion-detail/championDetailController.js"></script>
     <script src="app/component/top-summoner/topSummonerController.js"></script>
+    <script src="app/component/login/loginController.js"></script>
+    <script src="app/component/register/registerController.js"></script>
     <script src="app/test/testController.js"></script>
+
+    <!------------------Components Angular ----------->
+    <script src="app/component/summoner/summonerDetailComponent.js"></script>
 
     <!------------------Services Angular ------------>
     <script src="app/shared/champs/championsService.js"></script>
@@ -100,10 +89,13 @@
     <script src="app/shared/serverInfo/serverInfo.js"></script>
     <script src="app/shared/API/summonerSpell.js"></script>
     <script src="app/shared/API/championNameService.js"></script>
+    <script src="app/shared/API/userService.js"></script>
+    <script src="app/shared/authentication/authenticationService.js"></script>
 
     <!------------------Filter Angular---------------->
     <script src="app/shared/htmlFilter.js"></script>
-    
+    <script src="app/shared/timeAgoFilter.js"></script>
+
     
 </body>
 </html>

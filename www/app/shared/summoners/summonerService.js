@@ -22,7 +22,6 @@
         }
         
         function GetSummonerByName(name){
-
             return $http.get(ServerInfo.getBaseUrl() + '/api/summoner/' + name)
                 .then(function(data){
                     return data.data;   

@@ -58,7 +58,7 @@ function getItemById(req,res) {
             if(item){
                 return item;
             }else {
-               return saveRecord(id,Item,formUrl(url,id));
+               return saveRecord(id,Item,formUrl(constants.URL_ITEM_ID,'id',id));
             }
         })
         .then(function (item) {

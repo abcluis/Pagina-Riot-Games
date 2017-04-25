@@ -15,13 +15,12 @@ body{
 .text-yellow{
     color: #f39c12;
 }
-.prueba-imagen{
-    transition: 1s ease all;
+.image-rounded{
+    border-radius: 20%;
+    transform: scale(.96);
+    transition: ease all .1s;
 }
-
-.prueba-imagen:active{
-    position: absolute;
-    width: 100%;
-    background-color: rgba(0,0,0,0.5);
+.image-rounded:hover{
+    transform: scale(1);
 }
 

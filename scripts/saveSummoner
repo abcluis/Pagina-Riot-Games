@@ -9,17 +9,19 @@ function saveSummoner(id,Model,url){
         json : true
     };
 
+
     return rp(options)
         .then(function (data) {
             model = new Model(data[id]);
             model.fixedName = data[id].name.toLowerCase().replace(' ','');
             model.summonerId = data[id].id;
+            console.log(model);
             return model.save();
         })
         .then(function () {
             return model;
         })
         .catch(function (error) {
-            return error;
+            throw error;
         });
 }

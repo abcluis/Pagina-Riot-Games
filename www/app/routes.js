@@ -13,7 +13,12 @@
             .state('navbar',{
                 absract:true,
                 templateUrl:'app/shared/navbar/navbar.html',
-                controller: 'NavbarController as $ctrl'
+                controller: 'NavbarController as $ctrl',
+                resolve:{
+                    currentUser : [function () {
+                        return localStorage.currentUser;
+                    }]
+                }
             })
             .state('navbar.home',{
                url:'/',
@@ -37,6 +42,7 @@
                     gamesDetail: ['GameService','$stateParams','$q',function (GameService,$stateParams,$q) {
                         return GameService.getMatchListByName($stateParams.name)
                             .then(function (data) {
+                                console.log(data);
                                 var promises = [];
                                 for(var i in data.matches){
                                     var promise = GameService.getGameDetailById(data.matches[i].matchId);

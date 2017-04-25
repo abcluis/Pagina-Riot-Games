@@ -15,6 +15,7 @@ var saveSummoner = require('../scripts/saveSummoner');
 var findRecord = require('../scripts/findRecord');
 var findIdByName = require('../scripts/findIdByName');
 
+var handleError = require('../scripts/handleError');
 
 app.route('/summoner')
     .get(getSummoners)
@@ -47,14 +48,11 @@ function getSummonerByName(req,res) {
     var promise = findIdByName(name);
 
     promise
-        .then(function (id) {
-            return findSummonerById(id);
-        })
         .then(function (summoner) {
             res.status(200).send(summoner);
         })
         .catch(function (error) {
-            res.status(400).send({'Error':'Cant get summoner by name: '+ error});
+            handleError(res,error);
         })
 }
 

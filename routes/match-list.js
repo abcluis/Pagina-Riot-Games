@@ -11,6 +11,8 @@ var findName = require('../scripts/findIdByName');
 
 var constants = require('../commons/constants/constants');
 
+var handleError = require('../scripts/handleError');
+
 app
     .route('/match-list')
     .get(getMatchList)
@@ -34,7 +36,7 @@ function getMatchList(req,res) {
             res.status(200).send(response);
         })
         .catch(function (error) {
-            res.status(400).send(error);
+            handleError(res,error);
         })
 }
 function deleteMatchList(req,res) {
@@ -43,7 +45,7 @@ function deleteMatchList(req,res) {
             res.status(200).send({"Success":"All matchlist removed"});
         })
         .catch(function (error) {
-            res.status(400).send(error);
+            handleError(res,error);
         })
 }
 function getMatchListById(req,res) {
@@ -70,8 +72,7 @@ function getMatchListById(req,res) {
             res.status(200).send(matchlist);
         })
         .catch(function (error) {
-            console.log(error);
-            res.status(400).send(error);
+            handleError(res,error);
         })
 }
 
@@ -90,8 +91,7 @@ function postMatchListById(req,res) {
             res.status(201).send(matchlist);
         })
         .catch(function (error) {
-            console.log(error);
-            res.status(400).send(error);
+            handleError(res,error);
         })
 
 }
@@ -103,9 +103,9 @@ function getMatchListByName(req,res) {
     var promise = findName(name);
 
     promise
-        .then(function (valor) {
-            id = valor;
-            return findRecord(valor,'summonerId',MatchList);
+        .then(function (summoner) {
+            id = summoner.summonerId;
+            return findRecord(id,'summonerId',MatchList);
         })
         .then(function (matchlist) {
             if(!matchlist){
@@ -124,8 +124,7 @@ function getMatchListByName(req,res) {
             res.status(200).send(matchlist);
         })
         .catch(function (error) {
-            console.log(error);
-            res.status(400).send(error);
+            handleError(res,error);
         })
     
 }

@@ -7,6 +7,8 @@ var request = require('supertest');
 var mongoose = require('mongoose');
 var config = require('../config/config');
 
+var formUrl = require('../scripts/formUrl');
+
 describe('Routing', function() {
     var url = 'http://localhost:3000';
     // within before() you can run all the operations that are needed to setup your tests. In this case
@@ -21,14 +23,7 @@ describe('Routing', function() {
        done();
     });
 
-    // use describe to give a title to your test suite, in this case the tile is "Account"
-    // and then specify a function in which we are going to declare all the tests
-    // we want to run. Each test starts with the function it() and as a first argument
-    // we have to provide a meaningful title for it, whereas as the second argument we
-    // specify a function that takes a single parameter, "done", that we will use
-    // to specify when our test is completed, and that's what makes easy
-    // to perform async test!
-    describe('Item', function() {
+    describe('Item by Id', function() {
         it('should return a item', function(done) {
             var id = 3030;
             // once we have specified the info we want to send to the server via POST verb,
@@ -76,9 +71,70 @@ describe('Routing', function() {
                     if(err){
                         throw err;
                     }
-                    mongoose.connection.close()
+
                     done();
                 })
         })
+    });
+
+    describe('Match-list by name',function () {
+        it('should return a match-list',function (done) {
+            var name = 'nevermore1234';
+
+            request(url)
+                .get('/api/match-list/' + name + '/name')
+                .expect(200)
+                .end(function(err, res) {
+                    if (err) {
+                        throw err;
+                    }
+                    res.body.summonerId.should.equal(5162029);
+                    res.body.should.have.property('_id');
+                    res.body.should.have.property('matches');
+                    done();
+                });
+        });
+        it('should return a match-list not found',function (done) {
+            var name = 'rererere';
+
+            request(url)
+                .get('/api/match-list/' + name + '/name')
+                .expect(404)
+                .end(function(err, res) {
+                    if (err) {
+                        throw err;
+                    }
+                    done();
+                });
+        });
+        it('should return a match-list bad request',function (done) {
+            var name = '32,ds';
+
+            request(url)
+                .get('/api/match-list/' + name + '/name')
+                .expect(400)
+                .end(function(err, res) {
+                    if (err) {
+                        throw err;
+                    }
+                    mongoose.connection.close();
+                    // this is should.js syntax, very clear
+                    done();
+                });
+        });
+    });
+    describe('Script url', function() {
+        it('should return url valid', function(done) {
+            var id = 10;
+            var url = formUrl('http://localhost:3000/api/item/{{id}}','id',id);
+            url.should.equal('http://localhost:3000/api/item/10');
+            done();
+        });
+        it('should return same url', function(done) {
+            var id = 10;
+            var url = formUrl('http://localhost:3000/api/item/{{id}}','name',id);
+            url.should.equal('http://localhost:3000/api/item/{{id}}');
+            done();
+        });
     });
 });

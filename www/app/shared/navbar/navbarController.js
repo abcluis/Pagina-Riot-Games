@@ -5,8 +5,35 @@
         .module('main')
         .controller('NavbarController',NavbarController);
 
-    NavbarController.$inject = ['$scope'];
-    function NavbarController($scope) {
+    NavbarController.$inject = ['$scope','$uibModal','currentUser','AuthenticationService'];
+    function NavbarController($scope,$uibModal,currentUser,AuthenticationService) {
+
+        var $ctrl = this;
+        if(currentUser){
+            $ctrl.currentUser = JSON.parse(currentUser);
+        }
+
+        $ctrl.open = function () {
+            var modalInstance = $uibModal.open({
+                animation : true,
+                ariaLabelledBy: 'modal-title',
+                ariaDescribedBy : 'modal-body',
+                templateUrl : 'app/component/login/login.html',
+                controller : 'LoginController',
+                controllerAs : '$ctrl'
+            });
+            
+            modalInstance.result
+                .then(function () {
+                    console.log("Cerrando....");
+                } , function () {
+                    console.log("Haz clickeado fuera");
+                });
+        };
+
+        $ctrl.logOut = function () {
+            AuthenticationService.clearCredentials();
+        };
 
         $scope.showSpinner = false;
 
@@ -21,5 +48,6 @@
             }
         });
     }
+
 
 })();

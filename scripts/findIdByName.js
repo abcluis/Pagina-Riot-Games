@@ -17,34 +17,35 @@ function findIdByName(name){
     var promise = Summoner.findOne({"fixedName":name});
 
 
-
     return promise
         .then(function (summoner) {
             if(summoner){
-                return summoner.summonerId;
+                return summoner;
             }else{
-                return saveSummonerById();
+                return saveSummonerById(name);
             }
         })
         .catch(function (error) {
-            return error;
+            throw error;
         });
 }
 
-function saveSummonerById() {
+function saveSummonerById(name) {
     var url = formUrl(constants.URL_SUMMONER_NAME,'name',name);
-
     var options = {
         url : url,
         json : true
     };
 
-    rp(options)
+    return rp(options)
         .then(function (summoner) {
             return summoner[name].id;
         })
         .then(function (id) {
             url = formUrl(constants.URL_SUMMONER_ID,'id',id);
             return saveSummoner(id,Summoner,url);
+        })
+        .catch(function (error) {
+            throw error;
         });
 }

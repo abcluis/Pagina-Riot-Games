@@ -3,8 +3,14 @@
 }
 
 .winner-team{
-    background-color: #286090;
+    background-color: #90caf9;
 }
 .losser-team{
-    background-color: darkred;
+    background-color: #e57373;
+}
+
+summoner-detail{
+    border-radius: 5px;
+    border: 1px dotted;
+    padding:16px;
 }

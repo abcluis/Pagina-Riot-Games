@@ -8,6 +8,7 @@ var userSchema = new Schema({
     name : String,
     username : {type: String, unique : true},
     summonerId : Number,
+    password : String,
     image : {
         full : String,
         thumb : String

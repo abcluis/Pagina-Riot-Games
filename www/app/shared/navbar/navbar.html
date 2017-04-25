@@ -26,7 +26,7 @@
             <li ui-sref-active="active"><a href="#" ui-sref="navbar.home">Campeones</a></li>
             <li ui-sref-active="active"><a href="#" ui-sref="navbar.summoner({name:'abcluis'})">Invocadores</a></li>
             <li ui-sref-active="active"><a href="#" ui-sref="navbar.top-summoner">Top list</a></li>
-        </ul>
+        </ul>e
         <form class="navbar-form navbar-left" role="search">
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="Search">
@@ -34,14 +34,16 @@
             <button type="submit" class="btn btn-default">Log in</button>
         </form>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Usuario</a></li>
+            <li ng-show="!$ctrl.currentUser"><a ng-click="$ctrl.open()">Usuario</a></li>
+            <li ng-show="$ctrl.currentUser" ><img style="height: 40px;" ng-src="{{$ctrl.currentUser.image}}" alt="" class="image-rounded"></li>
+            <li ng-show="$ctrl.currentUser"><a ng-click="$ctrl.open()">{{$ctrl.currentUser.username}}</a></li>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-lg fa-cog" aria-hidden="true"></i> <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li><a href="#">Action</a></li>
                     <li><a href="#">Another action</a></li>
                     <li><a href="#">Something else here</a></li>
-                    <li><a href="#">Cerrar sesion</a></li>
+                    <li><a ng-click="$ctrl.logOut()">Cerrar sesion</a></li>
                 </ul>
             </li>
         </ul>
