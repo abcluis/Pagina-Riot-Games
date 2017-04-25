@@ -11,6 +11,7 @@ function GameService($http,ServerInfo) {
 
     service.getGameDetailById = getGameDetailById;
     service.getMatchListByName = getMatchListByName;
+    service.getMatchListById = getMatchListById;
 
     function getGameDetailById(id) {
         return $http.get(ServerInfo.getBaseUrl() + '/api/game-detail/' + id)
@@ -21,6 +22,12 @@ function GameService($http,ServerInfo) {
 
     function getMatchListByName(name) {
         return $http.get(ServerInfo.getBaseUrl() + '/api/match-list/' + name + '/name')
+            .then(function (data) {
+                return data.data;
+            });
+    }
+    function getMatchListById(id) {
+        return $http.get(ServerInfo.getBaseUrl() + '/api/match-list/' + id)
             .then(function (data) {
                 return data.data;
             });

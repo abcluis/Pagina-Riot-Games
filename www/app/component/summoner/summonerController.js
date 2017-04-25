@@ -8,13 +8,13 @@
         .module('main')
         .controller('SummonerController',SummonerController);
 
-    SummonerController.$inject = ['gamesDetail','summoners','champions'];
-    function SummonerController(gamesDetail,summoners,champions) {
+    SummonerController.$inject = ['gamesDetail','summoners','champions','$stateParams'];
+    function SummonerController(gamesDetail,summoners,champions,$stateParams) {
         var $ctrl = this;
         $ctrl.games = gamesDetail;
         $ctrl.summoners = summoners;
         $ctrl.champions = champions;
-        console.log(gamesDetail);
+        $ctrl.summonerName = $stateParams.name;
     }
 
 

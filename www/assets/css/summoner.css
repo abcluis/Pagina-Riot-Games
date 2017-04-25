@@ -3,14 +3,15 @@
 }
 
 .winner-team{
-    background-color: #90caf9;
+    background-color: #16a085;
 }
 .losser-team{
-    background-color: #e57373;
+    background-color: #c0392b;
 }
 
 summoner-detail{
-    border-radius: 5px;
-    border: 1px dotted;
+    background-clip: padding-box;
+    border:1px solid transparent;
+    color: white;
     padding:16px;
 }

@@ -1,0 +1,18 @@
+
+<div style="text-align: center">
+
+    Invocador : <p>{{$ctrl.player.summonerName}}</p>
+    <span class="text-success">{{$ctrl.kda.kills}}</span> /
+    <span class="text-info">{{$ctrl.kda.deaths}}</span> /
+    <span class="text-yellow">{{$ctrl.kda.assists}}</span>
+    <!--<img ng-src="https://ddragon.leagueoflegends.com/cdn/7.7.1/img/profileicon/{{$ctrl.player.profileIcon}}.png" style="">-->
+    <img class="image-rounded" ng-src="http://ddragon.leagueoflegends.com/cdn/7.8.1/img/champion/{{$ctrl.champion.key}}.png" alt="">
+    <span ng-repeat="spell in $ctrl.spells  track by $index">
+        <img ng-src="http://ddragon.leagueoflegends.com/cdn/7.8.1/img/spell/{{spell}}.png" alt="">
+    </span>
+    <br>
+    <span ng-repeat="item in $ctrl.items track by $index" >
+    <img ng-src="http://ddragon.leagueoflegends.com/cdn/7.8.1/img/item/{{item}}.png" alt="" style="border-radius: 50%">
+</span>
+
+</div>

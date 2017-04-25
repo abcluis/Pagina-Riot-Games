@@ -9,6 +9,7 @@ var saveRecordCustom = require('../scripts/saveRecordCustom');
 var findRecord = require('../scripts/findRecord');
 var findName = require('../scripts/findIdByName');
 
+var revisionDate = require('../scripts/revisionDate');
 var constants = require('../commons/constants/constants');
 
 var handleError = require('../scripts/handleError');
@@ -59,13 +60,19 @@ function getMatchListById(req,res) {
 
                 var date = new Date();
 
-                date = date.setDate(date.getDate()-14);
+                date = date.setDate(date.getDate()-6);
 
                 var url = 'https://lan.api.riotgames.com/api/lol/LAN/v2.2/matchlist/by-summoner/'+id+'?beginTime='+date+'&api_key=RGAPI-737702a9-d61e-4d5f-8cc4-daed40c6166b';
 
                 return saveRecordCustom(id,MatchList,url,'summonerId');
             }else {
-                return matchlist;
+                if(revisionDate.fiveMinutesAgo(matchlist.revisionDate)){
+
+                    return removeMatchListById(res,matchlist.summonerId);
+                }else {
+
+                    return matchlist;
+                }
             }
         })
         .then(function (matchlist) {
@@ -75,7 +82,23 @@ function getMatchListById(req,res) {
             handleError(res,error);
         })
 }
+function removeMatchListById(res,id) {
+    var promise = MatchList.remove({"summonerId": id});
 
+    return promise
+        .then(function () {
+            var date = new Date();
+
+            date = date.setDate(date.getDate()-6);
+
+            var url = 'https://lan.api.riotgames.com/api/lol/LAN/v2.2/matchlist/by-summoner/'+id+'?beginTime='+date+'&api_key=RGAPI-737702a9-d61e-4d5f-8cc4-daed40c6166b';
+
+            return saveRecordCustom(id,MatchList,url,'summonerId');
+        })
+        .catch(function (error) {
+            handleError(res,error);
+        })
+}
 function postMatchListById(req,res) {
     var id = req.params.id;
     var date = new Date();

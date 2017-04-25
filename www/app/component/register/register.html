@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="modal-header">
+        <div class="modal-title">
+            <h1>Nuevo usuario</h1>
+        </div>
+    </div>
+    <div class="modal-body">
+        <div class="col-lg-6 col-md-6 col-xs-6">
+            <form ng-submit="$ctrl.save()" >
+                <span>Nombre</span>
+                <input type="text" name="name" id="nombre" class="form-control" value="" title="" required="required" ng-model="$ctrl.name">
+                <span>Nombre de Usuario </span>
+                <input type="text" name="name" id="username" class="form-control" value="" title="" required="required" ng-model="$ctrl.username">
+
+                <div class="alert alert-danger" ng-show="$ctrl.usernameDuplicate">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>El usuario ya se encuentra registrado</strong> Ingresa otro usuario
+                </div>
+
+                <span>Tu password</span>
+                <input type="password" name="name" id="password" class="form-control" value="" title="" required="required" ng-model="$ctrl.password">
+                <span>Nombre de invocador</span>
+                <input type="text" name="name" id="summoner" class="form-control" value="" title="" required="required" ng-model="$ctrl.summoner">
+                <div class="alert alert-danger" ng-show="$ctrl.summonerNotFound">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>Invocador no encontrado</strong> Ingresa otro nombre de invocador
+                </div>
+                <input
+                    type="file"
+                    ngf-select
+                    ng-model="$ctrl.file"
+                    name="file"
+                    ngf-pattern="'image/*'"
+                    accept="image/*"
+                    ngf-max-size="20MB"
+                    class="form-control"
+                />
+                <br>
+                <img style="width:50%;" ng-show="!!file" ngf-thumbnail="file"/>
+
+                <hr>
+                <button type="submit" class="btn btn-info">Registrarte</button>
+                <hr>
+            </form>
+        </div>
+    </div>
+</div>

@@ -20,7 +20,10 @@ var participant = new Schema({
         item3 : Number,
         item4 : Number,
         item5 : Number,
-        item6 : Number
+        item6 : Number,
+        kills : Number,
+        deaths : Number,
+        assists : Number
     }
 });
 var participantIdentities = new Schema({

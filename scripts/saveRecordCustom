@@ -10,6 +10,7 @@ function saveRecord(id,Model,url,paramId){
     };
     return rp(options)
         .then(function (data) {
+            data.revisionDate = new Date();
             model = new Model(data);
             model[paramId] = id;
             return model.save();

@@ -45,7 +45,6 @@ function deleteItem(req,res) {
 }
 
 function getItemById(req,res) {
-
     var id = req.params.id;
 
     if(isNaN(parseInt(id))){

@@ -15,7 +15,8 @@ var match = new Schema({
 
 var matchSchema = new Schema({
     summonerId : {type: Number , unique: true},
-    matches : [match]
+    matches : [match],
+    revisionDate : Date
 });
 
 module.exports = mongoose.model('MatchList',matchSchema);

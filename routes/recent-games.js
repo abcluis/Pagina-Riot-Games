@@ -5,6 +5,8 @@ var rp = require('request-promise');
 var app = express.Router();
 var RecentGames = mongoose.model('RecentGames');
 
+var revisionDate = require('../scripts/revisionDate');
+
 //var routesSummoner = require('../routes/summoner');
 
 var constants = require('../commons/constants/constants');

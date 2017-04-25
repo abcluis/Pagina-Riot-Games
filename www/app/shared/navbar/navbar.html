@@ -24,21 +24,20 @@
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav">
             <li ui-sref-active="active"><a href="#" ui-sref="navbar.home">Campeones</a></li>
-            <li ui-sref-active="active"><a href="#" ui-sref="navbar.summoner({name:'abcluis'})">Invocadores</a></li>
+            <li ui-sref-active="active"><a href="#" ui-sref="navbar.summoner({name: $ctrl.currentUser.nameSummoner||'abcluis'})">Invocadores</a></li>
             <li ui-sref-active="active"><a href="#" ui-sref="navbar.top-summoner">Top list</a></li>
         </ul>e
-        <form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search">
-            </div>
-            <button type="submit" class="btn btn-default">Log in</button>
-        </form>
+
         <ul class="nav navbar-nav navbar-right">
-            <li ng-show="!$ctrl.currentUser"><a ng-click="$ctrl.open()">Usuario</a></li>
+            <li ng-show="!$ctrl.currentUser">
+                <form class="navbar-form">
+                    <button ng-click="$ctrl.open()" class="btn btn-default">Iniciar sesion</button>
+                </form>
+            </li>
             <li ng-show="$ctrl.currentUser" ><img style="height: 40px;" ng-src="{{$ctrl.currentUser.image}}" alt="" class="image-rounded"></li>
             <li ng-show="$ctrl.currentUser"><a ng-click="$ctrl.open()">{{$ctrl.currentUser.username}}</a></li>
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-lg fa-cog" aria-hidden="true"></i> <b class="caret"></b></a>
+                <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-lg fa-cog" aria-hidden="true"></i> <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li><a href="#">Action</a></li>
                     <li><a href="#">Another action</a></li>

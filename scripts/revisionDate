@@ -1,0 +1,13 @@
+module.exports = {
+    fiveMinutesAgo: function (date) {
+        var today = new Date();
+        var lastUpdate = new Date(date);
+
+        return (today-lastUpdate) / (1000*60) > 5;
+    },
+    oneWeekAgo: function (date) {
+        var today = new Date();
+        var lastUpdate = new Date(date);
+        return (today-lastUpdate) / (1000*60*60*24) > 7;
+    }
+};

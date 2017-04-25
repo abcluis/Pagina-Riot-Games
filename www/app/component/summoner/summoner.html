@@ -14,7 +14,7 @@
 <div>
 
     <div>
-        <h3>Invocadores</h3>
+        <h3>Partidas recientes de {{$ctrl.summonerName}}</h3>
         <div ng-repeat="game in $ctrl.games">
             <h3>{{game.queueType}}</h3>
             <h5>{{game.matchCreation | timeago}}</h5>
@@ -40,7 +40,11 @@
                                 $ctrl.summoners[$parent.$index][$index].spell1.key,
                                 $ctrl.summoners[$parent.$index][$index].spell2.key
                                 ]"
-
+                                kda = "{
+                                    kills : game.participants[$index].stats.kills,
+                                    deaths : game.participants[$index].stats.deaths,
+                                    assists : game.participants[$index].stats.assists,
+                                }"
                         ></summoner-detail>
 
                         <summoner-detail
@@ -61,7 +65,11 @@
                                 $ctrl.summoners[$parent.$index][$index + 5].spell1.key,
                                 $ctrl.summoners[$parent.$index][$index + 5].spell2.key
                                 ]"
-
+                                kda = "{
+                                    kills : game.participants[$index + 5].stats.kills,
+                                    deaths : game.participants[$index + 5].stats.deaths,
+                                    assists : game.participants[$index + 5].stats.assists,
+                                }"
                         ></summoner-detail>
                     </div>
 
