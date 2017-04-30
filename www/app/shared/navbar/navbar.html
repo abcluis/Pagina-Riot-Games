@@ -35,14 +35,14 @@
                 </form>
             </li>
             <li ng-show="$ctrl.currentUser" ><img style="height: 40px;" ng-src="{{$ctrl.currentUser.image}}" alt="" class="image-rounded"></li>
-            <li ng-show="$ctrl.currentUser"><a ng-click="$ctrl.open()">{{$ctrl.currentUser.username}}</a></li>
+            <li ng-show="$ctrl.currentUser"><a>{{$ctrl.currentUser.username}}</a></li>
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-lg fa-cog" aria-hidden="true"></i> <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li><a href="#">Action</a></li>
                     <li><a href="#">Another action</a></li>
                     <li><a href="#">Something else here</a></li>
-                    <li><a ng-click="$ctrl.logOut()">Cerrar sesion</a></li>
+                    <li><a href="" ng-click="$ctrl.logOut()">Cerrar sesion</a></li>
                 </ul>
             </li>
         </ul>

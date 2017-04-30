@@ -1,13 +1,12 @@
 <div class="container">
-    <div class="modal-header">
-        <div class="modal-title">
-            <h3>Inicio de sesion</h3>
-        </div>
+    <div class="modal-title">
+        <h4>Inicio de sesion</h4>
     </div>
+
     <div class="modal-body" id="modal-body">
         <div class="col-lg-6 col-md-6 col-xs-6">
             <div class="text-center">
-                <img style="border-radius: 5px" src="http://lan.leagueoflegends.com/sites/default/files/styles/wide_small/public/upload/heimerbanner-1920x1080_1.jpg?itok=aOP_hHhT" width="100%" alt="">
+                <img style="border-radius: 5px" src="http://img12.deviantart.net/847b/i/2012/316/b/a/league_of_legends_by_we4ponx-d5kqo34.png" width="100%" alt="">
             </div>
 
             <form action="" ng-submit role="form">
@@ -15,13 +14,15 @@
                 <input type="text" name="name" id="username" class="form-control" value="" title="" required="required" ng-model="$ctrl.username">
                 <span>Tu password</span>
                 <input type="password" name="name" id="password" class="form-control" value="" title="" required="required" ng-model="$ctrl.password">
+                <div class="alert alert-danger" ng-show="$ctrl.userNotValid">
+                    <strong>{{$ctrl.userNotValid}}!</strong>
+                </div>
                 <hr>
                 <button type="button" class="btn btn-primary" ng-click="$ctrl.login()">Iniciar sesion</button>
                 <button type="button" ng-click="$ctrl.open()" class="btn btn-default">Registrarte</button>
                 <hr>
             </form>
         </div>
-
 
     </div>
 

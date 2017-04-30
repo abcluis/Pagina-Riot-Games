@@ -16,7 +16,9 @@
                     AuthenticationService.setCredentials(response);
                     $uibModalInstance.dismiss();
                 },function (error) {
-                    console.log(error);
+                    if(error.status === 401){
+                        $ctrl.userNotValid = 'Usuario o contraseña incorrectos'
+                    }
                 });
         };
 

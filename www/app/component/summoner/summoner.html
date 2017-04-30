@@ -15,6 +15,12 @@
 
     <div>
         <h3>Partidas recientes de {{$ctrl.summonerName}}</h3>
+        <div ng-show="!$ctrl.games[0]">
+            <div class="alert alert-danger">
+                <strong>Partidas no encontradas</strong> Este invocador no tiene partidas recientes
+            </div>
+
+        </div>
         <div ng-repeat="game in $ctrl.games | limitTo : 10">
             <h3>Partida N:{{$index + 1}}</h3>
             <h3>{{game.queueType}}</h3>
