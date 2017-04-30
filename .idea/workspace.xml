@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cec1df1a-2996-4ed5-90fa-7086a3fc9544" name="Default" comment="">
+    <list default="true" id="cec1df1a-2996-4ed5-90fa-7086a3fc9544" name="Default" comment="limit to 10 games by user and fix handle error in game-detail">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/games-detail.js" afterPath="$PROJECT_DIR$/routes/games-detail.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/match-list.js" afterPath="$PROJECT_DIR$/routes/match-list.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.js" afterPath="$PROJECT_DIR$/server.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/component/summoner/summoner.html" afterPath="$PROJECT_DIR$/www/app/component/summoner/summoner.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/component/summoner/summonerDetail.html" afterPath="$PROJECT_DIR$/www/app/component/summoner/summonerDetail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/routes.js" afterPath="$PROJECT_DIR$/www/app/routes.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -155,6 +149,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <push-targets>
+      <push-target-info target-remote="origin" target-branch="master" repo="$PROJECT_DIR$" source="master" />
+    </push-targets>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -505,7 +502,7 @@
       <workItem from="1493176437811" duration="20000" />
       <workItem from="1493177140527" duration="981000" />
       <workItem from="1493350597272" duration="8000" />
-      <workItem from="1493587329760" duration="2828000" />
+      <workItem from="1493587329760" duration="3179000" />
     </task>
     <task id="LOCAL-00001" summary="added StoreController">
       <created>1493130988606</created>
@@ -514,11 +511,18 @@
       <option name="project" value="LOCAL" />
       <updated>1493130988606</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="limit to 10 games by user and fix handle error in game-detail">
+      <created>1493590214957</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1493590214957</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="208754000" />
+    <option name="totallyTimeSpent" value="209105000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -531,7 +535,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23883928" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -540,7 +543,7 @@
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.82160395" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7643208" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.7643208" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -560,7 +563,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added StoreController" />
-    <option name="LAST_COMMIT_MESSAGE" value="added StoreController" />
+    <MESSAGE value="limit to 10 games by user and fix handle error in game-detail" />
+    <option name="LAST_COMMIT_MESSAGE" value="limit to 10 games by user and fix handle error in game-detail" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
