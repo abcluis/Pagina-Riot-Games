@@ -1,7 +1,8 @@
 
 <div style="text-align: center">
 
-    Invocador : <p>{{$ctrl.player.summonerName}}</p>
+    Invocador : <a ui-sref="navbar.summoner({name:$ctrl.player.summonerName})">{{$ctrl.player.summonerName}}</a>
+    <hr>
     <span class="text-success">{{$ctrl.kda.kills}}</span> /
     <span class="text-info">{{$ctrl.kda.deaths}}</span> /
     <span class="text-yellow">{{$ctrl.kda.assists}}</span>

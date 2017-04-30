@@ -48,7 +48,7 @@ var routesMatchList = require('./routes/match-list');
 
 var urlMongo =
     process.env.MONGODB_URI ||
-    'mongodb://localhost/riot';
+    'mongodb://gleish:tec02.123@ds159330.mlab.com:59330/heroku_cwdgn98z';
 
 mongoose.connect(urlMongo);
 

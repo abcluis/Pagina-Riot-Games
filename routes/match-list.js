@@ -21,8 +21,7 @@ app
 
 app
     .route('/match-list/:id')
-    .get(getMatchListById)
-    .post(postMatchListById);
+    .get(getMatchListById);
 
 app
     .route('/match-list/:name/name')
@@ -52,9 +51,20 @@ function deleteMatchList(req,res) {
 function getMatchListById(req,res) {
     var id = req.params.id;
 
+    findMatchListId(id,res)
+        .then(function (matchlist) {
+            res.status(200).send(matchlist);
+        })
+        .catch(function (error) {
+            handleError(res,error);
+        })
+}
+
+function findMatchListId(id,res) {
+
     var promise = findRecord(id,'summonerId',MatchList);
 
-    promise
+    return promise
         .then(function (matchlist) {
             if(!matchlist){
 
@@ -75,13 +85,8 @@ function getMatchListById(req,res) {
                 }
             }
         })
-        .then(function (matchlist) {
-            res.status(200).send(matchlist);
-        })
-        .catch(function (error) {
-            handleError(res,error);
-        })
 }
+
 function removeMatchListById(res,id) {
     var promise = MatchList.remove({"summonerId": id});
 
@@ -99,49 +104,15 @@ function removeMatchListById(res,id) {
             handleError(res,error);
         })
 }
-function postMatchListById(req,res) {
-    var id = req.params.id;
-    var date = new Date();
-
-    date = date.setDate(date.getDate()-14);
-
-    var url = 'https://lan.api.riotgames.com/api/lol/LAN/v2.2/matchlist/by-summoner/'+id+'?beginTime='+date+'&api_key=RGAPI-737702a9-d61e-4d5f-8cc4-daed40c6166b';
-
-    var promise = saveRecordCustom(id,MatchList,url,'summonerId');
-
-    promise
-        .then(function (matchlist) {
-            res.status(201).send(matchlist);
-        })
-        .catch(function (error) {
-            handleError(res,error);
-        })
-
-}
-
 function getMatchListByName(req,res) {
     var name = req.params.name.toLowerCase().replace(' ','');
-    var id;
-    console.log(name);
+
     var promise = findName(name);
 
     promise
         .then(function (summoner) {
-            id = summoner.summonerId;
-            return findRecord(id,'summonerId',MatchList);
-        })
-        .then(function (matchlist) {
-            if(!matchlist){
-                var date = new Date();
-
-                date = date.setDate(date.getDate()-14);
-
-                var url = 'https://lan.api.riotgames.com/api/lol/LAN/v2.2/matchlist/by-summoner/'+id+'?beginTime='+date+'&api_key=RGAPI-737702a9-d61e-4d5f-8cc4-daed40c6166b';
-
-                return saveRecordCustom(id,MatchList,url,'summonerId');
-            }else {
-                return matchlist;
-            }
+            var id = summoner.summonerId;
+            return findMatchListId(id,res)
         })
         .then(function (matchlist) {
             res.status(200).send(matchlist);

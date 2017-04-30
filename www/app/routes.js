@@ -45,6 +45,7 @@
                                 console.log(data);
                                 var promises = [];
                                 for(var i in data.matches){
+                                    if(i>=10) break;
                                     var promise = GameService.getGameDetailById(data.matches[i].matchId);
                                     promises.push(promise);
                                 }
@@ -52,6 +53,10 @@
                             })
                             .then(function (data) {
                                 return data;
+                            })
+                            .catch(function (error) {
+
+                                return error;
                             });
                     }],
                     summoners : ['gamesDetail','SummonerSpellService','$q',function (gamesDetail,SummonerSpellService,$q) {

@@ -11,6 +11,8 @@ var constants = require('../commons/constants/constants');
 var saveRecord = require('../scripts/saveRecord');
 var findRecord = require('../scripts/findRecord');
 
+var handleError = require('../scripts/handleError');
+
 var url = 'https://lan.api.riotgames.com/api/lol/LAN/v2.2/match/{{id}}?api_key=RGAPI-737702a9-d61e-4d5f-8cc4-daed40c6166b';
 
 
@@ -30,7 +32,7 @@ function getGameDetail(req,res) {
             res.status(200).send(gamesDetails);
         })
         .catch(function (error) {
-            res.status(400).send(error);
+            handleError(res,error);
         })
 }
 function deleteGameDetail(req,res) {
@@ -42,7 +44,7 @@ function deleteGameDetail(req,res) {
             res.status(200).send({"Success":"All games removed"});
         })
         .catch(function (error) {
-            res.status(400).send(error);
+            handleError(res,error);
         })
 }
 function getGameDetailById(req,res) {
@@ -61,7 +63,7 @@ function getGameDetailById(req,res) {
             res.status(200).send(gameDetail);
         })
         .catch(function (error) {
-            res.status(400).send(error);
+            handleError(res,error);
         })
 }
 
@@ -85,7 +87,7 @@ function postGameDetailById(req,res) {
             res.status(200).send(gameDetail);
         })
         .catch(function (error) {
-            res.status(400).send(error);
+            handleError(res,error);
         })
 }
 

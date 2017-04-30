@@ -15,7 +15,8 @@
 
     <div>
         <h3>Partidas recientes de {{$ctrl.summonerName}}</h3>
-        <div ng-repeat="game in $ctrl.games">
+        <div ng-repeat="game in $ctrl.games | limitTo : 10">
+            <h3>Partida N:{{$index + 1}}</h3>
             <h3>{{game.queueType}}</h3>
             <h5>{{game.matchCreation | timeago}}</h5>
             <div>
